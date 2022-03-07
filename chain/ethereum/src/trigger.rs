@@ -380,7 +380,7 @@ impl From<&'_ Transaction> for EthereumTransactionData {
             to: tx.to,
             value: tx.value,
             gas_limit: tx.gas,
-            gas_price: tx.gas_price,
+            gas_price: tx.gas_price.unwrap_or_default(), // EIP-1559 made this optional.
             input: tx.input.0.clone(),
             nonce: tx.nonce.clone(),
         }
